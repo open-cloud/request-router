@@ -1,0 +1,24 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+description: Onboard the CDN service
+
+imports:
+   - custom_types/xos.yaml
+
+topology_template:
+  node_templates:
+    servicecontroller#rr:
+      type: tosca.nodes.ServiceController
+      properties:
+          base_url: file:///opt/xos_services/request-router/xos/
+          models: models.py
+          admin: admin.py
+          admin_template: templates/rradmin.html
+          synchronizer: synchronizer/manifest
+          synchronizer_run: rr-synchronizer.py
+          #tosca_custom_types: tosca/custom_types/cdn.yaml
+          #tosca_resource: 
+          #rest_service: 
+          #rest_tenant: subdirectory:cord api/tenant/cord/vsg.py
+          #private_key: file:///opt/xos/key_import/vsg_rsa
+          #public_key: file:///opt/xos/key_import/vsg_rsa.pub
